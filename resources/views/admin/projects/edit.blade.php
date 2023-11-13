@@ -43,6 +43,26 @@
                     </div>
 
                     <div class="mb-3">
+                        <label for="type_id" class="form-label">Categories</label>
+                        <select class="form-select @error('type_id') is-invalid  @enderror" name="type_id" id="type_id">
+                            <option selected disabled>Select a category</option>
+                            <option value="">Uncategorized</option>
+
+                            @forelse ($types as $type)
+                                <option value="{{ $type->id }}"
+                                    {{ $type->id == old('type_id', $post->type_id) ? 'selected' : '' }}>
+                                    {{ $type->name }}</option>
+                            @empty
+                            @endforelse
+
+
+                        </select>
+                    </div>
+                    @error('type_id')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+
+                    <div class="mb-3">
 
                         <label for="content" class="form-label"><strong>Content</strong></label>
 
@@ -54,6 +74,30 @@
                         @enderror
 
                     </div>
+
+                    <div class="mb-3">
+                        <label for="github" class="form-label">Title</label>
+                        <input type="text" name="github" id="github"
+                            class="form-control  @error('github') is-invalid  @enderror"
+                            placeholder="Type the link to your code here" aria-describedby="helperTitle"
+                            value="{{ old('github', $project->github) }}">
+                        <small id="helpergithub" class="text-muted">Type the link to your code here: 50 characters</small>
+                    </div>
+                    @error('github')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+
+                    <div class="mb-3">
+                        <label for="website" class="form-label">website</label>
+                        <input type="text" name="website" id="website"
+                            class="form-control  @error('website') is-invalid  @enderror"
+                            placeholder="Type the website link here" aria-describedby="helperwebsite"
+                            value="{{ old('website', $project->website) }}">
+                        <small id="helperwebsite" class="text-muted">Type the website link here max: 50 characters</small>
+                    </div>
+                    @error('website')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
 
 
                     <div class="mb-3">

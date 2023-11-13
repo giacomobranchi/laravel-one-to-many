@@ -38,6 +38,20 @@
                     </div>
 
                     <div class="mb-3">
+                        <label for="type" class="form-label"><strong>Type</strong></label>
+                        <select class="form-select @error('type_id') is-invalid  @enderror" name="type_id" id="type_id">
+                            <option selected disabled>Select a type</option>
+                            <option value="">Uncategorized</option>
+
+                            @forelse ($types as $type)
+                                <option value="{{ $type->id }}" {{ $type->id == old('type_id') ? 'selected' : '' }}>
+                                    {{ $type->name }}
+                                </option>
+                            @empty
+                            @endforelse
+                    </div>
+
+                    <div class="mb-3">
 
                         <label for="content" class="form-label"><strong>Description</strong></label>
 
@@ -45,6 +59,32 @@
                             placeholder="New project Description"></textarea>
 
                         @error('content')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label for="github" class="form-label"><strong>Project</strong></label>
+
+                        <input type="text" class="form-control" name="github" id="github"
+                            aria-describedby="helpgithub" placeholder="New project Code">
+
+                        @error('github')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label for="Website" class="form-label"><strong>Description</strong></label>
+
+                        <input type="text" class="form-control" name="website" id="website"
+                            aria-describedby="helpwebsite" placeholder="New project Website">
+
+                        @error('Website')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
 

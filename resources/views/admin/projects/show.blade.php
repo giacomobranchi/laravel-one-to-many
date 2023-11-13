@@ -34,7 +34,8 @@
 
                     <div class="card-body">
                         <p><strong>Description: </strong>{{ $project->description }}</p>
-                        <p><strong>Technologies used: </strong>{{ $project->tech }}</p>
+                        <p><strong>Type:
+                            </strong>{{ $project->type ? $project->type->name : 'Uncategorized' }}</p>
                     </div>
                 </div>
             </div>
